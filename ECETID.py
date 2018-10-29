@@ -69,9 +69,7 @@ def makeChanDir(soup):
        board = titleDC[0] 
        tRw   = ' '.join(titleDC[1:-1])
 
-
     print("{} - {}".format(board, tRw) )
-
 
     board = board[1:-1].upper()
     alphabet = string.ascii_letters + string.digits + ("'[];()&"",.-_ ")
@@ -80,7 +78,7 @@ def makeChanDir(soup):
         if char in alphabet:
            thread+=char
 
-    return ("Site-[ 8chan ] - Board-[" + board + "] - Thread-["+idInt+"][ " + thread[:64] +" ]")
+    return ("Site-[ 8chan ] - Board-[" + board + "] - Thread-[ " + thread[:64] +" ]["+idInt+"]")
 
 
 
