@@ -58,8 +58,7 @@ def makeChanDir(soup):
     name = nameA.strip()
 
     #Some threads like generals ( /sig/, /qtddtot/) have the same name, so the number is necessary.
-    idInt = soup.findAll("div", {"class":"post op has-file body-not-empty"})[0].get('id')[3:]
-
+    idInt = str(soup.findAll("div", {"class":"post op has-file body-not-empty"})[0].get('id')[3:]).zfill(10)
 
     sInt  = name.count(" - ")
     titleDC = name.split(" - ") 
