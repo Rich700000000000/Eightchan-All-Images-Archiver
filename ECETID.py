@@ -139,19 +139,18 @@ def everything(url):
 
 
 	      extTR = os.path.splitext(fileNameTemp)[1]
-
-
 	      fileNameFinal = (fileNumberTemp + " - ON[" + fileNameTemp + "]" + extTR)
-
-	      
-	      print ("File:        " + fileNameFinal)
+	      print ("File to be written:        " + fileNameFinal)
 
 
 	      try:
-	        response = requests.get(fileURLTemp, stream=1)
-	        with open((os.path.join(dcwd, fileNameFinal)), 'wb') as out_file:
-	          print ("Downloading: " + fileNameFinal)
-	          shutil.copyfileobj(response.raw, out_file)
+	        fileURLTempfix = ("https:" + fileURLTemp) #Workaround for the two slashes
+	        #response = requests.get(fileURLTempfix, stream=1)
+	        #with open((os.path.join(dcwd, fileNameFinal)), 'wb') as out_file:
+	        #  print ("Downloading: " + fileNameFinal)
+	        ffpath = (os.path.join(dcwd, fileNameFinal))
+	        with urllib.request.urlopen(fileURLTempfix) as response, open(ffpath, 'wb') as out_file:
+	          shutil.copyfileobj(response, out_file)
 	        del response
 	        print ("Downloaded:  " + fileNameFinal + "\n")
 	      except OSError:
@@ -160,9 +159,9 @@ def everything(url):
 	      except urllib.error.URLError:
 	       print ("Network Error on image: {}\n".format(fileNameFinal))
 	       eerr += 1
-	      except Exception:
-	       print ("Exception on image: {}\n".format(fileNameFinal))
-	       eerr += 1
+#	      except Exception:
+#	       print ("Exception on image: {}\n".format(fileNameFinal))
+#	       eerr += 1
 
 
 	      
