@@ -78,7 +78,8 @@ def makeChanDir(soup):
         if char in alphabet:
            thread+=char
 
-    return ("Site-[ 8chan ] - Board-[" + board + "] - Thread-[ " + thread[:64] +" ]["+idInt+"]")
+    #return ("Site-[ 8chan ] - Board-[" + board + "] - Thread-[ " + thread[:64] +" ]["+idInt+"]")
+    return ("Site-[ 8chan ] - Board-[ {} ] - Thread-[ {} ][{}]".format(board,thread[:64],idInt))
 
 
 
@@ -124,7 +125,7 @@ def everything(url):
 
 
 
-	      print("Image:       " + (str(loopCount + 1)) + "/" + (str(threadCount)))
+	      print("Image:                     " + (str(loopCount + 1)) + " of " + (str(threadCount)))
 
 
 	      fileNameTemp        =  fileName[loopCount]
@@ -133,9 +134,9 @@ def everything(url):
 
 
 
-	      print("File Name:   " + fileNameTemp)
-	      print("File Number: " + fileNumberTemp)
-	      print("File Url:    " + fileURLTemp)
+	      print("File Name:                 " + fileNameTemp)
+	      print("File Number:               " + fileNumberTemp)
+	      print("File Url:                  " + fileURLTemp[2:])
 
 
 	      extTR = os.path.splitext(fileNameTemp)[1]
@@ -152,7 +153,7 @@ def everything(url):
 	        with urllib.request.urlopen(fileURLTempfix) as response, open(ffpath, 'wb') as out_file:
 	          shutil.copyfileobj(response, out_file)
 	        del response
-	        print ("Downloaded:  " + fileNameFinal + "\n")
+	        print ("File Downloaded:           " + fileNameFinal + "\n")
 	      except OSError:
 	       print ("Error on image: {}\n".format(fileNameFinal))
 	       eerr += 1
